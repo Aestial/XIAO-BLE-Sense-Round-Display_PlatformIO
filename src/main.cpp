@@ -1,18 +1,24 @@
 #include <Arduino.h>
+#include <TFT_eSPI.h>
+#include <Wire.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define USE_TFT_ESPI_LIBRARY
+#include "lv_xiao_round_screen.h"
+// #include <PNGdec.h>
+
+#define MAX_IMAGE_WIDTH 240
+
+TFT_eSprite sprite = TFT_eSprite(&tft); // Off-screen buffer
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  sprite.createSprite(240, 240); // Match display size
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  sprite.fillScreen(TFT_GREENYELLOW);
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  // Push sprite to display
+  sprite.pushSprite(0, 0);
+
+  delay(10);
 }
