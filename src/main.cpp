@@ -11,7 +11,18 @@
 TFT_eSprite sprite = TFT_eSprite(&tft); // Off-screen buffer
 
 void setup() {
+  Serial.begin(115200);
+  Serial.println("\n\nUsing the TFT eSPI library with touch interaction!");
+
+  // Initialize TFT
+  tft.begin();
+  tft.fillScreen(TFT_RED);
   sprite.createSprite(240, 240); // Match display size
+
+  pinMode(TOUCH_INT, INPUT_PULLUP);
+  Wire.begin();
+
+  Serial.println("Setup complete.");
 }
 
 void loop() {
